@@ -25,10 +25,6 @@ export interface IPostWriteComponentState {
    * If it's true comment will be disabled on post
    */
   disableComments: boolean
-  /**
-   * If it's true share will be disabled on post
-   */
-  disableSharing: boolean,
 
   /**
    * Whether menu is open

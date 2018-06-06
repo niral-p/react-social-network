@@ -133,10 +133,6 @@ export class PostWriteComponent extends Component<IPostWriteComponentProps, IPos
        * If it's true comment will be disabled on post
        */
       disableComments: this.props.edit && postModel ? postModel.get('disableComments') : false,
-      /**
-       * If it's true share will be disabled on post
-       */
-      disableSharing: this.props.edit && postModel ? postModel.get('disableSharing') : false
 
     }
 
@@ -148,7 +144,7 @@ export class PostWriteComponent extends Component<IPostWriteComponentProps, IPos
     this.handlePost = this.handlePost.bind(this)
     this.handleRemoveImage = this.handleRemoveImage.bind(this)
     this.handleToggleComments = this.handleToggleComments.bind(this)
-    this.handleToggleSharing = this.handleToggleSharing.bind(this)
+    /** this.handleToggleSharing = this.handleToggleSharing.bind(this) */
 
   }
 
@@ -168,15 +164,15 @@ export class PostWriteComponent extends Component<IPostWriteComponentProps, IPos
   /**
    * Toggle sharing of the post to disable/enable
    *
-   *
    * @memberof PostWrite
+   *    
+   *   handleToggleSharing = () => {
+   *     this.setState({
+   *       disableSharing: !this.state.disableSharing,
+   *       disabledPost: false
+   *     }) 
+   *   }
    */
-  handleToggleSharing = () => {
-    this.setState({
-      disableSharing: !this.state.disableSharing,
-      disabledPost: false
-    })
-  }
 
   /**
    * Romove the image of post
@@ -201,7 +197,9 @@ export class PostWriteComponent extends Component<IPostWriteComponentProps, IPos
       image,
       imageFullPath,
       disableComments,
-      disableSharing,
+      /**
+       * disableSharing,
+       */
       postText } = this.state
 
     const {
@@ -234,7 +232,9 @@ export class PostWriteComponent extends Component<IPostWriteComponentProps, IPos
           ownerAvatar: ownerAvatar,
           ownerDisplayName: ownerDisplayName,
           disableComments: disableComments,
-          disableSharing: disableSharing,
+          /**
+           * disableSharing: disableSharing,
+           */
           postTypeId: 1,
           score: 0,
           viewCount: 0
@@ -246,7 +246,9 @@ export class PostWriteComponent extends Component<IPostWriteComponentProps, IPos
           ownerAvatar: ownerAvatar,
           ownerDisplayName: ownerDisplayName,
           disableComments: disableComments,
-          disableSharing: disableSharing,
+          /**
+           * disableSharing: disableSharing,
+           */
           postTypeId: 0,
           score: 0,
           viewCount: 0
@@ -258,8 +260,9 @@ export class PostWriteComponent extends Component<IPostWriteComponentProps, IPos
       .set('image', image)
       .set('imageFullPath', imageFullPath)
       .set('disableComments', disableComments)
-      .set('disableSharing', disableSharing)
-
+      /**
+       * .set('disableSharing', disableSharing)
+       */
       update!(updatedPost, onRequestClose)
     }
   }
@@ -367,9 +370,9 @@ export class PostWriteComponent extends Component<IPostWriteComponentProps, IPos
       disableComments: this.props.edit && postModel ? postModel.get('disableComments') : false,
       /**
        * If it's true share will be disabled on post
+       * 
+       * disableSharing: this.props.edit && postModel ? postModel.get('disableSharing') : false
        */
-      disableSharing: this.props.edit && postModel ? postModel.get('disableSharing') : false
-
       })
     }
   }
@@ -404,7 +407,7 @@ export class PostWriteComponent extends Component<IPostWriteComponentProps, IPos
               <Paper>
                 <MenuList role='menu'>
                   <MenuItem onClick={this.handleToggleComments} style={{ fontSize: '14px' }}>{!this.state.disableComments ? 'Disable comments' : 'Enable comments'} </MenuItem>
-                  <MenuItem onClick={this.handleToggleSharing} style={{ fontSize: '14px' }}>{!this.state.disableSharing ? 'Disable sharing' : 'Enable sharing'}</MenuItem>
+
                 </MenuList>
               </Paper>
             </Grow>

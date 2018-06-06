@@ -80,9 +80,10 @@ export interface IPostComponentProps {
    * Toggle sharing disable/enable
    *
    * @memberof IPostComponentProps
+   *
+   * toggleSharingComments?: (status: boolean) => any
    */
-  toggleSharingComments?: (status: boolean) => any
-
+   
   /**
    * Redirect to {url} route
    *

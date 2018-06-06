@@ -67,7 +67,7 @@ const styles = (theme: any) => ({
   },
   vote: {
     display: 'flex',
-    flex: 1
+    flex: 1,
   },
   voteCounter: {
     color: 'rgb(134, 129, 129)',
@@ -145,24 +145,31 @@ export class PostComponent extends Component<IPostComponentProps, IPostComponent
       openComments: false,
       /**
        * If it's true, share dialog will be open
+       *
+       * shareOpen: false,
        */
-      shareOpen: false,
       /**
        * If it's true comment will be disabled on post
        */
       disableComments: post.get('disableComments', false),
       /**
        * If it's true share will be disabled on post
+       *
+       * disableSharing: post.get('disableSharing', false),
        */
-      disableSharing: post.get('disableSharing', false),
+
       /**
        * Title of share post
+       *
+       * shareTitle: 'Share On',
        */
-      shareTitle: 'Share On',
+
       /**
        * If it's true, post link will be visible in share post dialog
+       *
+       * openCopyLink: false,
        */
-      openCopyLink: false,
+
       /**
        * If it's true, post write will be open
        */
@@ -181,9 +188,9 @@ export class PostComponent extends Component<IPostComponentProps, IPostComponent
     this.handleReadMore = this.handleReadMore.bind(this)
     this.getOpenCommentGroup = this.getOpenCommentGroup.bind(this)
     this.handleVote = this.handleVote.bind(this)
-    this.handleOpenShare = this.handleOpenShare.bind(this)
-    this.handleCloseShare = this.handleCloseShare.bind(this)
-    this.handleCopyLink = this.handleCopyLink.bind(this)
+    /** this.handleOpenShare = this.handleOpenShare.bind(this) */
+    /** this.handleCloseShare = this.handleCloseShare.bind(this) */
+    /** this.handleCopyLink = this.handleCopyLink.bind(this) */
     this.handleDelete = this.handleDelete.bind(this)
     this.handleOpenPostWrite = this.handleOpenPostWrite.bind(this)
     this.handleClosePostWrite = this.handleClosePostWrite.bind(this)
@@ -266,42 +273,44 @@ export class PostComponent extends Component<IPostComponentProps, IPostComponent
    *
    *
    * @memberof Post
+   *
+   * handleCopyLink = () => {
+   * const {translate} = this.props
+   * this.setState({
+   *   openCopyLink: true,
+   *   shareTitle: translate!('post.copyLinkButton')
+   * })
+   * }
    */
-  handleCopyLink = () => {
-    const {translate} = this.props
-    this.setState({
-      openCopyLink: true,
-      shareTitle: translate!('post.copyLinkButton')
-    })
-  }
 
   /**
    * Open share post
    *
    *
    * @memberof Post
+   *
+   *   handleOpenShare = () => {
+   *     const {post} = this.props
+   *     copy(`${location.origin}/${post.get('ownerUserId')}/posts/${post.get('id')}`)
+   *     this.setState({
+   *       shareOpen: true
+   *     })
+   *   }
    */
-  handleOpenShare = () => {
-    const {post} = this.props
-    copy(`${location.origin}/${post.get('ownerUserId')}/posts/${post.get('id')}`)
-    this.setState({
-      shareOpen: true
-    })
-  }
-
   /**
    * Close share post
    *
    *
    * @memberof Post
+   *
+   *   handleCloseShare = () => {
+   *     this.setState({
+   *       shareOpen: false,
+   *       shareTitle: 'Share On',
+   *       openCopyLink: false
+   *     })
+   *   }
    */
-  handleCloseShare = () => {
-    this.setState({
-      shareOpen: false,
-      shareTitle: 'Share On',
-      openCopyLink: false
-    })
-  }
 
   /**
    * Handle vote on a post
@@ -372,10 +381,12 @@ export class PostComponent extends Component<IPostComponentProps, IPostComponent
                     onClick={() => this.props.toggleDisableComments!(!post.get('disableComments'))} >
                     {post.get('disableComments') ? translate!('post.enableComments') : translate!('post.disableComments')}
                   </MenuItem>
-                  <MenuItem
-                    onClick={() => this.props.toggleSharingComments!(!post.get('disableSharing'))} >
-                    {post.get('disableSharing') ? translate!('post.enableSharing') : translate!('post.disableSharing')}
-                  </MenuItem>
+                  {/*
+                    <MenuItem
+                     onClick={() => this.props.toggleSharingComments!(!post.get('disableSharing'))} >
+                     {post.get('disableSharing') ? translate!('post.enableSharing') : translate!('post.disableSharing')}
+                    </MenuItem>
+                   */}
                 </MenuList>
               </Paper>
             </Grow>
@@ -392,8 +403,10 @@ export class PostComponent extends Component<IPostComponentProps, IPostComponent
       body, 
       id, 
       disableComments, 
-      commentCounter, 
-      disableSharing ,
+      commentCounter,
+      /** 
+       * disableSharing ,
+       */
     } = post.toJS()
     // Define variables
     return (
@@ -454,26 +467,28 @@ export class PostComponent extends Component<IPostComponentProps, IPostComponent
               <div className={classes.commentCounter}>{commentCounter! > 0 ? commentCounter : ''} </div>
             </IconButton>
             </div>) : ''}
-          {!disableSharing ? (<IconButton
+            
+          {/*{!disableSharing ? (<IconButton
             className={classes.iconButton}
             onClick={this.handleOpenShare}
             aria-label='Comment'>
             <SvgShare />
           </IconButton>) : ''}
-
+          */}
+          
         </CardActions>
 
         <CommentGroup open={this.state.openComments} comments={commentList} ownerPostUserId={ownerUserId!} onToggleRequest={this.handleOpenComments} isPostOwner={this.props.isPostOwner!} disableComments={disableComments!} postId={id} />
 
+    {/*
         <ShareDialog 
         onClose={this.handleCloseShare} 
         shareOpen={this.state.shareOpen} 
         onCopyLink={this.handleCopyLink} 
         openCopyLink={this.state.openCopyLink}
         post={post} 
-
         />
-       
+      */} 
         <PostWrite
           open={this.state.openPostWrite}
           onRequestClose={this.handleClosePostWrite}
@@ -502,9 +517,11 @@ const mapDispatchToProps = (dispatch: any, ownProps: IPostComponentProps) => {
     toggleDisableComments: (status: boolean) => {
       dispatch(postActions.dbUpdatePost(post.set('disableComments', status), (x: any) => x))
     },
-    toggleSharingComments: (status: boolean) => {
-      dispatch(postActions.dbUpdatePost(post.set('disableSharing', status), (x: any) => x))
-    },
+  /**  
+   * toggleSharingComments: (status: boolean) => {
+   *   dispatch(postActions.dbUpdatePost(post.set('disableSharing', status), (x: any) => x))
+   * },
+   */
     goTo: (url: string) => dispatch(push(url)),
     setHomeTitle: (title: string) => dispatch(globalActions.setHeaderTitle(title || '')),
     getPostComments: (ownerUserId: string, postId: string) => dispatch(commentActions.dbFetchComments(ownerUserId, postId))
