@@ -131,7 +131,7 @@ export class PeopleComponent extends Component<IPeopleComponentProps,IPeopleComp
     const {tabIndex} = this.state
     return (
       <div style={styles.people}>
-      <AppBar position='static' color='default'>
+      <AppBar position='static' style={{marginTop: '10px', backgroundColor: '#f15f45', borderRadius: '10px', width: '1550px', marginLeft: 'auto', marginRight: 'auto'}}>
       <Tabs indicatorColor={grey[50]}
       onChange={this.handleChangeTab}
       value={tabIndex} centered

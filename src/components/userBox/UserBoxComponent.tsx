@@ -61,7 +61,7 @@ const styles = (theme: any) => ({
     width: 243,
     margin: 10,
     textAlign: 'center',
-    minWidth: 230,    
+    minWidth: 230,
     maxWidth: '257px'
   },
   dialogContent: {
@@ -304,17 +304,17 @@ export class UserBoxComponent extends Component<IUserBoxComponentProps, IUserBox
    */
   render () {
     const { disabledDoneCircles } = this.state
-    const { 
+    const {
       isFollowed,
       firstBelongCircle,
       belongCirclesCount,
-      followRequest, 
-      userId, 
-      isSelecteCirclesOpen, 
-      addToCircleRequest, 
-      deleteFollowingUserRequest, 
-      classes, 
-      translate 
+      followRequest,
+      userId,
+      isSelecteCirclesOpen,
+      addToCircleRequest,
+      deleteFollowingUserRequest,
+      classes,
+      translate
     } = this.props
 
     return (
@@ -326,7 +326,8 @@ export class UserBoxComponent extends Component<IUserBoxComponentProps, IUserBox
           justifyContent: 'flex-start',
           height: '100%',
           position: 'relative',
-          paddingTop: 20
+          backgroundColor: 'lightblue',
+          paddingTop: '10px'
 
         }}>
           <div onClick={() => this.props.goTo!(`/${this.props.userId}`)} style={{ cursor: 'pointer' }}>
@@ -457,7 +458,7 @@ const mapStateToProps = (state: Map<string, any>, ownProps: IUserBoxComponentPro
   const deleteFollowingUserRequestId = StringAPI.createServerRequestId(ServerRequestType.CircleDeleteFollowingUser, ownProps.userId)
   const deleteFollowingUserRequest = state.getIn(['server', 'request', deleteFollowingUserRequestId])
   const selectedCircles = state.getIn(['circle', 'selectedCircles', ownProps.userId], [])
-  
+
   const isSelecteCirclesOpen = state.getIn(['circle', 'openSelecteCircles', ownProps.userId], [])
   const userBox = state.getIn(['user', 'info', ownProps.userId])
 

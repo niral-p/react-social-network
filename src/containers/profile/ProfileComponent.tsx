@@ -76,6 +76,15 @@ export class ProfileComponent extends Component<IProfileComponentProps,IProfileC
       },
       avatar: {
         border: '2px solid rgb(255, 255, 255)'
+      },
+      /* Change the post header to the center */
+      profile__title: {
+        color: 'white',
+        height: '100%' ,
+        width: '100%' ,
+        display: 'flex' ,
+        justifyContent: 'center' ,
+        alignItems: 'center'
       }
     }
     const {loadPosts, hasMorePosts, translate} = this.props
@@ -88,7 +97,7 @@ export class ProfileComponent extends Component<IProfileComponentProps,IProfileC
         </div>
         {posts
         ? (<div style={styles.content}>
-          <div className='profile__title'>
+          <div className='profile__title' style={styles.profile__title}>
             {translate!('profile.headPostsLabel', {userName: this.props.name})}
                </div>
           <div style={{ height: '24px' }}></div>
@@ -139,7 +148,7 @@ const mapStateToProps = (state: Map<string, any>, ownProps: IProfileComponentPro
   return {
     translate: getTranslate(state.get('locale')),
     avatar: userProfile.avatar,
-    name: userProfile.fullName, 
+    name: userProfile.fullName,
     banner: userProfile.banner,
     tagLine: userProfile.tagLine,
     isAuthedUser: userId === uid,

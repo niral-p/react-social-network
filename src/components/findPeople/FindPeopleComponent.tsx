@@ -66,7 +66,7 @@ export class FindPeopleComponent extends Component<IFindPeopleComponentProps, IF
                 <div className='tracks'>
 
                 {peopleInfo && peopleInfo.count() > 0 ? (<div>
-                <div className='profile__title'>
+                <div style={{color: 'white'}} className='profile__title'>
                     {translate!('people.suggestionsForYouLabel')}
                 </div>
                 <UserBoxList users={peopleInfo}/>

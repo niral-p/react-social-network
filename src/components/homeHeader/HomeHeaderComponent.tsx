@@ -100,7 +100,7 @@ export class HomeHeaderComponent extends Component<IHomeHeaderComponentProps, IH
   onToggleSidebar = () => {
    const {onToggleDrawer} = this.props
    onToggleDrawer()
-  }
+ }
 
   /**
    * Handle notification touch
@@ -180,22 +180,17 @@ export class HomeHeaderComponent extends Component<IHomeHeaderComponentProps, IH
     const anchor = theme.direction === 'rtl' ? 'right' : 'left'
     return (
 
-      <AppBar position='fixed' color='secondary'>
+      <AppBar position='fixed' color='primary'>
         <Toolbar>
           {/* Left side */}
+          {/*Added the image of bonfire logo */}
+          <img src={require('./bonfire_logo_full.png')} width='240' height='90'/>
 
-          <IconButton onClick={this.onToggleSidebar} >
-            <SvgDehaze color='primary' style={{ cursor: 'pointer' }} />
-          </IconButton>
-          {/* Header title */}
-          <Typography variant='title' color='primary' style={{ marginLeft: '15px' }} >
-            {config.settings.appName}
-          </Typography>
           <div className='homeHeader__title-root'>
           <Hidden smDown>
-           <div className={classNames({'homeHeader__title-left': anchor === 'left', 'homeHeader__title-right': anchor === 'right' })}>{this.props.title}</div> 
+           <div className={classNames({'homeHeader__title-left': anchor === 'left', 'homeHeader__title-right': anchor === 'right' })}></div>
            </Hidden>
-          </div>
+         </div>
 
           {/* Notification */}
           <div className='homeHeader__right'>

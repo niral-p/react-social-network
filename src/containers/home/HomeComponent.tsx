@@ -63,6 +63,12 @@ import { IHomeComponentState } from './IHomeComponentState'
 
 const drawerWidth = 220
 const styles = (theme: any) => ({
+  /* Adding new css rule for the primart section text in ListItemText */
+  primary: {
+    color: 'white'
+  },
+  /* end */
+
   root: {
     width: '100%',
     marginTop: theme.spacing.unit * 3,
@@ -90,14 +96,16 @@ const styles = (theme: any) => ({
       height: '100%',
     },
   },
+
+  /* Change the color to our background color */
   drawerPaperLarge: {
     width: drawerWidth,
     [theme.breakpoints.up('md')]: {
       width: drawerWidth,
       height: '100%',
     },
-    top: 70,
-    backgroundColor: '#fafafa',
+    top: 120,
+    backgroundColor: '#3e2e38',
     borderRight: 0
   },
   menu: {
@@ -200,43 +208,52 @@ export class HomeComponent extends Component<IHomeComponentProps, IHomeComponent
       <>
 
       <NavLink to='/'>
-        <MenuItem style={{ color: 'rgb(117, 117, 117)' }}>
-          <ListItemIcon>
+        {/* Change the color when user clicks on it */}
+        <MenuItem style={{ color: '#e46900' }}>
+          <ListItemIcon style={{color: 'white'}}>
             <SvgHome />
           </ListItemIcon>
-          <ListItemText inset primary={translate!('sidebar.home')} />
+          <ListItemText classes={{primary: classes.primary}} inset primary={translate!('sidebar.home')} />
         </MenuItem>
       </NavLink>
+
       <NavLink to={`/${this.props.uid}`}>
-        <MenuItem style={{ color: 'rgb(117, 117, 117)' }}>
-          <ListItemIcon>
+      {/* Change the color when user clicks on it */}
+        <MenuItem style={{ color: '#e46900' }}>
+          <ListItemIcon style={{color: 'white'}}>
             <SvgAccountCircle />
           </ListItemIcon>
-          <ListItemText inset primary={translate!('sidebar.profile')} />
+          <ListItemText inset classes={{primary: classes.primary}} primary={translate!('sidebar.profile')} />
         </MenuItem>
       </NavLink>
+
       <NavLink to='/people'>
-        <MenuItem style={{ color: 'rgb(117, 117, 117)' }}>
-          <ListItemIcon>
+        {/* Change the color when user clicks on it */}
+        <MenuItem style={{ color: '#e46900' }}>
+          <ListItemIcon style={{color: 'white'}}>
             <SvgPeople />
           </ListItemIcon>
-          <ListItemText inset primary={translate!('sidebar.people')} />
+          <ListItemText inset classes={{primary: classes.primary}} primary={translate!('sidebar.people')} />
         </MenuItem>
       </NavLink>
+
       <Divider />
+
       <NavLink to='/settings'>
-        <MenuItem style={{ color: 'rgb(117, 117, 117)' }}>
-          <ListItemIcon>
+        {/* Change the color when user clicks on it */}
+        <MenuItem style={{ color: '#e46900' }}>
+          <ListItemIcon style={{color: 'white'}}>
             <SvgSettings />
           </ListItemIcon>
-          <ListItemText inset primary={translate!('sidebar.settings')} />
+          <ListItemText inset classes={{primary: classes.primary}} primary={translate!('sidebar.settings')} />
         </MenuItem>
       </NavLink>
-      <MenuItem onClick={() => showSendFeedback!()} style={{ color: 'rgb(117, 117, 117)' }}>
-        <ListItemIcon>
+
+      <MenuItem onClick={() => showSendFeedback!()} style={{ color: '#e46900' }}>
+        <ListItemIcon style={{color: 'white'}}>
           <SvgFeedback />
         </ListItemIcon>
-        <ListItemText inset primary={translate!('sidebar.sendFeedback')} />
+        <ListItemText inset classes={{primary: classes.primary}} primary={translate!('sidebar.sendFeedback')} />
       </MenuItem>
       </>
     )

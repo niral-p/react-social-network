@@ -105,13 +105,13 @@ export class ProfileHeaderComponent extends Component<IProfileHeaderComponentPro
 
       editButton: {
 
-        marginLeft: '20px'
+        marginLeft: '20px',
 
       },
       editButtonSmall: {
 
         marginLeft: '20px',
-        color: 'white',
+        color: 'orange',
         fill: 'blue'
 
       },
@@ -120,6 +120,11 @@ export class ProfileHeaderComponent extends Component<IProfileHeaderComponentPro
       },
       aboutButtonSmall: {
         color: 'black'
+      },
+      main_control: {
+        marginLeft: '300px',
+        marginRight: '300px',
+        borderRadius: '10px'
       }
     }
 
@@ -140,10 +145,10 @@ export class ProfileHeaderComponent extends Component<IProfileHeaderComponentPro
 
     return (
 
-            <div>
-                <Parallax strength={500} className='profile__parallax' bgStyle={{ position: 'relative' }}>
+            <div className='main_control' style={styles.main_control}>
+                <Parallax strength={500} className='profile__parallax' bgStyle={{ position: 'center' }}>
                     <Background>
-                        <ImgCover width='100%' height='510px' borderRadius='2px'
+                        <ImgCover width='1100px' height='550px' borderRadius='10px'
                         fileName={this.props.banner || config.settings.defaultProfileCover} />
                     </Background>
 
@@ -170,7 +175,7 @@ export class ProfileHeaderComponent extends Component<IProfileHeaderComponentPro
                     </div>
                     <div className='right'>
                         {isAuthedUser ? (<div style={this.state.isSmall ? styles.editButtonSmall : styles.editButton}>
-                        <Button variant='raised' onClick={this.props.openEditor}>
+                        <Button style={{borderRadius: '10px', backgroundColor: 'lightblue', color: 'white'}} variant='raised' onClick={this.props.openEditor}>
                         {translate!('profile.editProfileButton')}
                         </Button>
                         </div>) : ''}
