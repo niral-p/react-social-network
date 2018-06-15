@@ -326,7 +326,7 @@ export class UserBoxComponent extends Component<IUserBoxComponentProps, IUserBox
           justifyContent: 'flex-start',
           height: '100%',
           position: 'relative',
-          backgroundColor: 'lightblue',
+          backgroundColor: '#d8d6d4',
           paddingTop: '10px'
 
         }}>
